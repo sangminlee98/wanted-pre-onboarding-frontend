@@ -30,3 +30,16 @@ export const getTodosAPI = async () => {
     alert((e as AxiosError<any>).response?.data.message);
   }
 };
+
+export const deleteTodoAPI = async (id: number) => {
+  try {
+    const response = await axios.delete(`/todos/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response;
+  } catch (e) {
+    alert((e as AxiosError<any>).response?.data.message);
+  }
+};

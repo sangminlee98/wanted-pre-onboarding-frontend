@@ -18,12 +18,26 @@ export default function TodoList({ todos, setTodos }: TodoListProps) {
   return (
     <div>
       <div>
-        <input type="text" value={title} onChange={handleTitle} />
-        <button onClick={handleTodoCreate}>추가</button>
+        <input
+          data-testid="new-todo-input"
+          type="text"
+          value={title}
+          onChange={handleTitle}
+        />
+        <button data-testid="new-todo-add-button" onClick={handleTodoCreate}>
+          추가
+        </button>
       </div>
       <ul>
         {todos.length > 0 &&
-          todos.map((todo) => <TodoItem key={todo.id} {...todo} />)}
+          todos.map((todo) => (
+            <TodoItem
+              key={todo.id}
+              presenter={presenter}
+              todo={todo}
+              setTodos={setTodos}
+            />
+          ))}
       </ul>
     </div>
   );

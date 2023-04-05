@@ -1,4 +1,4 @@
-import { createTodoAPI } from "@/services/todo";
+import { createTodoAPI, deleteTodoAPI } from "@/services/todo";
 import { Todo } from "@/types/todo";
 
 export default class TodoPresenter {
@@ -22,6 +22,17 @@ export default class TodoPresenter {
     const response = await createTodoAPI(title);
     if (response) {
       this.todos = [...this.todos, response];
+      update(this.todos);
+    }
+  }
+
+  async delete(
+    todo: Todo,
+    update: React.Dispatch<React.SetStateAction<Todo[]>>
+  ) {
+    const response = await deleteTodoAPI(todo.id);
+    if (response) {
+      this.todos = this.todos.filter((item) => item.id !== todo.id);
       update(this.todos);
     }
   }
