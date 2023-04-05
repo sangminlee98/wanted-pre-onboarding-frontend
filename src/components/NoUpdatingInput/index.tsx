@@ -1,4 +1,5 @@
 import { Todo } from "@/types/todo";
+import React from "react";
 
 type NoUpdatingInputProps = {
   todo: Todo;
@@ -6,7 +7,7 @@ type NoUpdatingInputProps = {
   handleTodoDelete: () => void;
 };
 
-export default function NoUpdatingInput({
+export function NoUpdatingInput({
   todo,
   setIsUpdating,
   handleTodoDelete,
@@ -23,3 +24,5 @@ export default function NoUpdatingInput({
     </>
   );
 }
+
+export default React.memo(NoUpdatingInput);

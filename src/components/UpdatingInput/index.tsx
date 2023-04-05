@@ -1,3 +1,5 @@
+import React from "react";
+
 type UpdatingInputProps = {
   updateInput: string;
   setIsUpdating: React.Dispatch<React.SetStateAction<boolean>>;
@@ -5,7 +7,7 @@ type UpdatingInputProps = {
   handleTodoInputUpdate: () => void;
 };
 
-export default function UpdatingInput({
+export function UpdatingInput({
   updateInput,
   setIsUpdating,
   handleUpdateInput,
@@ -27,3 +29,5 @@ export default function UpdatingInput({
     </>
   );
 }
+
+export default React.memo(UpdatingInput);
