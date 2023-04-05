@@ -2,6 +2,9 @@ import useInput from "@/hooks/useInput";
 import { Todo } from "@/types/todo";
 import TodoPresenter from "@/utils/todoPresenter";
 import { useState } from "react";
+import UpdatingInput from "@/components/UpdatingInput";
+import NoUpdatingInput from "@/components/NoUpdatingInput";
+import React from "react";
 
 type TodoItemProps = {
   todo: Todo;
@@ -9,7 +12,7 @@ type TodoItemProps = {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 
-export default function TodoItem({ todo, presenter, setTodos }: TodoItemProps) {
+export function TodoItem({ todo, presenter, setTodos }: TodoItemProps) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [updateInput, handleUpdateInput] = useInput(todo.todo);
   const handleTodoDelete = () => {
@@ -25,41 +28,6 @@ export default function TodoItem({ todo, presenter, setTodos }: TodoItemProps) {
     setIsUpdating(false);
   };
 
-  function UpdatingInput() {
-    return (
-      <>
-        <input
-          data-testid="modify-input"
-          value={updateInput}
-          onChange={handleUpdateInput}
-        />
-        <button data-testid="submit-button" onClick={handleTodoInputUpdate}>
-          제출
-        </button>
-        <button
-          data-testid="cancel-button"
-          onClick={() => setIsUpdating(false)}
-        >
-          취소
-        </button>
-      </>
-    );
-  }
-
-  function NoUpdatingInput() {
-    return (
-      <>
-        <p>{todo.todo}</p>
-        <button data-testid="modify-button" onClick={() => setIsUpdating(true)}>
-          수정
-        </button>
-        <button data-testid="delete-button" onClick={handleTodoDelete}>
-          삭제
-        </button>
-      </>
-    );
-  }
-
   return (
     <li>
       <input
@@ -67,7 +35,22 @@ export default function TodoItem({ todo, presenter, setTodos }: TodoItemProps) {
         checked={todo.isCompleted}
         onChange={handleTodoCheckUpdate}
       />
-      {isUpdating ? <UpdatingInput /> : <NoUpdatingInput />}
+      {isUpdating ? (
+        <UpdatingInput
+          updateInput={updateInput}
+          setIsUpdating={setIsUpdating}
+          handleUpdateInput={handleUpdateInput}
+          handleTodoInputUpdate={handleTodoInputUpdate}
+        />
+      ) : (
+        <NoUpdatingInput
+          todo={todo}
+          setIsUpdating={setIsUpdating}
+          handleTodoDelete={handleTodoDelete}
+        />
+      )}
     </li>
   );
 }
+
+export default React.memo(TodoItem);

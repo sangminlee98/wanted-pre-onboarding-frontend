@@ -2,13 +2,14 @@ import TodoItem from "../TodoItem";
 import TodoPresenter from "@/utils/todoPresenter";
 import { Todo } from "@/types/todo";
 import useInput from "@/hooks/useInput";
+import React from "react";
 
 type TodoListProps = {
   todos: Todo[];
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 };
 
-export default function TodoList({ todos, setTodos }: TodoListProps) {
+export function TodoList({ todos, setTodos }: TodoListProps) {
   const presenter = new TodoPresenter(todos);
   const [title, handleTitle, setTitle] = useInput("");
   const handleTodoCreate = () => {
@@ -42,3 +43,5 @@ export default function TodoList({ todos, setTodos }: TodoListProps) {
     </div>
   );
 }
+
+export default React.memo(TodoList);
