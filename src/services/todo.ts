@@ -43,3 +43,24 @@ export const deleteTodoAPI = async (id: number) => {
     alert((e as AxiosError<any>).response?.data.message);
   }
 };
+
+export const updateTodoAPI = async (
+  id: number,
+  todo: string,
+  isCompleted: boolean
+) => {
+  try {
+    const response = await axios.put<Todo>(
+      `/todos/${id}`,
+      { todo, isCompleted },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (e) {
+    alert((e as AxiosError<any>).response?.data.message);
+  }
+};
