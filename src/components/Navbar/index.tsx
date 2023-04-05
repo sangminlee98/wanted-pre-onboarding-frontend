@@ -8,7 +8,7 @@ type NavbarProps = {
 
 function BeforeLogin() {
   return (
-    <div className={styles.buttonContainer}>
+    <div className={styles.buttonWrapper}>
       <Link to="/signin">로그인</Link>
       <Link to="/signup">회원가입</Link>
     </div>
@@ -21,7 +21,7 @@ function AfterLogin() {
     navigate("/signin");
   };
   return (
-    <div className={styles.buttonContainer}>
+    <div className={styles.buttonWrapper}>
       <Link to="/todo">투두</Link>
       <button className={styles.logoutButton} onClick={onLogout}>
         로그아웃
@@ -32,8 +32,8 @@ function AfterLogin() {
 
 export function Navbar({ authState }: NavbarProps) {
   return (
-    <div className={styles.container}>
-      <div className={styles.innerContainer}>
+    <div className={styles.componentWrapper}>
+      <div className={styles.innerWrapper}>
         <Link to="/">
           <h1 className={styles.title}>TODO</h1>
         </Link>

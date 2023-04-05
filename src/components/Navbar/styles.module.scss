@@ -1,6 +1,6 @@
 @import "@/media.scss";
 
-.container {
+.componentWrapper {
   position: sticky;
   top: 0;
   left: 0;
@@ -15,7 +15,7 @@
     height: 50px;
   }
 }
-.innerContainer {
+.innerWrapper {
   width: 100%;
   max-width: 1200px;
   height: 100%;
@@ -34,7 +34,7 @@
   color: var(--main-color);
 }
 
-.buttonContainer {
+.buttonWrapper {
   position: relative;
   display: flex;
   align-items: center;
