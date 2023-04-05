@@ -4,7 +4,12 @@ import onKeydown from "@/utils/onKeydown";
 import { SignUpAPI } from "@/services/user";
 import { Form } from "@/types/form";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
+import {
+  Link,
+  Navigate,
+  useNavigate,
+  useOutletContext,
+} from "react-router-dom";
 import styles from "./styles.module.scss";
 
 export default function SignUpPage() {
@@ -87,6 +92,10 @@ export default function SignUpPage() {
         >
           회원가입
         </button>
+        <span className={styles.subContainer}>
+          <p>이미 회원이신가요?</p>
+          <Link to="/signin">로그인</Link>
+        </span>
       </form>
     </div>
   );

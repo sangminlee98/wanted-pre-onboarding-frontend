@@ -10,6 +10,7 @@
 .title {
   font-size: 3rem;
   font-weight: 700;
+  font-family: "NanumSquareAcB";
   color: var(--main-color);
   margin-bottom: 3rem;
 }
@@ -64,7 +65,7 @@
 .button {
   width: 100%;
   height: 4rem;
-  margin-bottom: 8rem;
+  margin-bottom: 2rem;
   border: none;
   border-radius: 8px;
   background-color: var(--darkgray-color);
@@ -73,5 +74,18 @@
   cursor: pointer;
   &:hover {
     opacity: 0.8;
+  }
+}
+.subContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-family: "Pretendard";
+  color: #4d5256;
+  & > a {
+    color: #4d5256;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-position: under;
   }
 }
