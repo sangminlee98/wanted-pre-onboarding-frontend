@@ -1,15 +1,10 @@
-import { Todo } from "@/types/todo";
+import TodoList from "@/components/TodoList";
 import TodoPresenter from "@/utils/todoPresenter";
-import { useEffect, useState } from "react";
 import { Navigate, useOutletContext } from "react-router-dom";
 
 export default function TodoPage() {
   const authState = useOutletContext();
-  const [todos, setTodos] = useState<Todo[]>([]);
-  const presenter = new TodoPresenter(todos);
-
-  useEffect(() => {}, []);
-
+  const presenter = new TodoPresenter();
   if (!authState) {
     return <Navigate to="/signin" />;
   }
@@ -19,7 +14,7 @@ export default function TodoPage() {
         <input type="text" />
         <button>추가</button>
       </div>
-      <ul></ul>
+      <TodoList presenter={presenter} />
     </div>
   );
 }

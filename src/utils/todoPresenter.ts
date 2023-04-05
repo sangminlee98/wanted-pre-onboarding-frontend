@@ -1,11 +1,16 @@
+import { getTodosAPI } from "@/services/todo";
 import { Todo } from "@/types/todo";
 
 export default class TodoPresenter {
-  todos;
-  constructor(todos: Todo[]) {
-    this.todos = todos;
+  todos: Todo[] = [];
+  constructor() {
+    getTodosAPI().then((res) => {
+      if (res) {
+        this.todos = res;
+      }
+    });
   }
-  getHabits() {
+  getTodos() {
     return this.todos;
   }
 

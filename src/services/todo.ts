@@ -17,3 +17,16 @@ export const createTodoAPI = async (todo: string) => {
     alert((e as AxiosError<any>).response?.data.message);
   }
 };
+
+export const getTodosAPI = async () => {
+  try {
+    const response = await axios.get<Todo[]>("/todos", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (e) {
+    alert((e as AxiosError<any>).response?.data.message);
+  }
+};

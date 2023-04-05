@@ -1,9 +1,9 @@
-type TodoProps = {
+type TodoItemProps = {
   todo: string;
   isCompleted: boolean;
 };
 
-export default function Todo({ todo, isCompleted }: TodoProps) {
+export default function TodoItem({ todo, isCompleted }: TodoItemProps) {
   return (
     <li>
       <input type="checkbox" checked={isCompleted} />
