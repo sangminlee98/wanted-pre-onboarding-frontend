@@ -1,14 +1,13 @@
 @import "@/media.scss";
 .pageWrapper {
   width: 100%;
-  min-height: 100vh;
 }
 .contentWrapper {
   display: flex;
   width: 100%;
   height: 50rem;
   padding: 0 1rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
   @include desktop {
     padding: 0 5rem;
   }
@@ -25,7 +24,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 12rem;
-    margin-left: 3rem;
+    margin-left: 5rem;
   }
   & > h1 {
     margin-bottom: 2rem;
