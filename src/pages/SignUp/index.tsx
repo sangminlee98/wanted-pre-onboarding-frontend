@@ -4,10 +4,11 @@ import onKeydown from "@/utils/onKeydown";
 import { SignUpAPI } from "@/services/user";
 import { Form } from "@/types/form";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useOutletContext } from "react-router-dom";
 import styles from "./styles.module.scss";
 
 export default function SignUpPage() {
+  const authState = useOutletContext();
   const navigate = useNavigate();
   const [formDisabled, setFormDisabled] = useState(true);
   const [email, emailHandler] = useInput("");
@@ -40,6 +41,10 @@ export default function SignUpPage() {
       setFormDisabled(true);
     }
   }, [emailErrorState, passwordErrorState]);
+
+  if (authState) {
+    return <Navigate to="/todo" />;
+  }
   return (
     <div className={styles.pageWrapper}>
       <h1 className={styles.title}>회원가입</h1>
