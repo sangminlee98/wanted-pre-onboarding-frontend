@@ -1,5 +1,6 @@
-import { Todo } from "@/types/todo";
 import React from "react";
+import { Todo } from "@/types/todo";
+import styles from "./styles.module.scss";
 
 type NoUpdatingInputProps = {
   todo: Todo;
@@ -13,15 +14,17 @@ export function NoUpdatingInput({
   handleTodoDelete,
 }: NoUpdatingInputProps) {
   return (
-    <>
-      <p>{todo.todo}</p>
-      <button data-testid="modify-button" onClick={() => setIsUpdating(true)}>
-        수정
-      </button>
-      <button data-testid="delete-button" onClick={handleTodoDelete}>
-        삭제
-      </button>
-    </>
+    <div className={styles.inputWrapper}>
+      <p className={styles.todo}>{todo.todo}</p>
+      <div className={styles.buttonWrapper}>
+        <button data-testid="modify-button" onClick={() => setIsUpdating(true)}>
+          수정
+        </button>
+        <button data-testid="delete-button" onClick={handleTodoDelete}>
+          삭제
+        </button>
+      </div>
+    </div>
   );
 }
 

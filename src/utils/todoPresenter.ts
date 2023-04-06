@@ -7,7 +7,6 @@ export const createTodo = async (
 ) => {
   const response = await createTodoAPI(title);
   if (response) {
-    // const newTodos = [...todos, response];
     update((todos) => [...todos, response]);
   }
 };

@@ -7,6 +7,7 @@ import { createTodo } from "@/utils/todoPresenter";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Navigate, useOutletContext } from "react-router-dom";
+import styles from "./styles.module.scss";
 
 export function TodoPage() {
   const authState = useOutletContext();
@@ -19,9 +20,11 @@ export function TodoPage() {
   };
 
   const handleTodoCreate = () => {
+    if (title === "") return;
     createTodo(title, setTodos);
     setTitle("");
   };
+
   useEffect(() => {
     if (!authState) return;
     getTodosAPI().then((todos) => {
@@ -35,12 +38,13 @@ export function TodoPage() {
     return <Navigate to="/signin" />;
   }
   return (
-    <div>
-      <div>
+    <div className={styles.pageWrapper}>
+      <div className={styles.todoInputWrapper}>
         <input
           data-testid="new-todo-input"
           type="text"
           value={title}
+          placeholder="할 일을 입력하세요."
           onChange={handleTitle}
           onKeyDown={(e) => onKeydown(e, keydownHandler)}
         />

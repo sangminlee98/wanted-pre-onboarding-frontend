@@ -1,6 +1,7 @@
+import React from "react";
 import TodoItem from "../TodoItem";
 import { Todo } from "@/types/todo";
-import React from "react";
+import styles from "./styles.module.scss";
 
 type TodoListProps = {
   todos: Todo[];
@@ -9,14 +10,12 @@ type TodoListProps = {
 
 export function TodoList({ todos, setTodos }: TodoListProps) {
   return (
-    <div>
-      <ul>
-        {todos.length > 0 &&
-          todos.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} setTodos={setTodos} />
-          ))}
-      </ul>
-    </div>
+    <ul className={styles.listWrapper}>
+      {todos.length > 0 &&
+        todos.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} setTodos={setTodos} />
+        ))}
+    </ul>
   );
 }
 

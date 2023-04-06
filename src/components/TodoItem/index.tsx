@@ -1,10 +1,11 @@
+import React from "react";
 import useInput from "@/hooks/useInput";
 import { Todo } from "@/types/todo";
 import { useState } from "react";
 import UpdatingInput from "@/components/UpdatingInput";
 import NoUpdatingInput from "@/components/NoUpdatingInput";
-import React from "react";
 import { deleteTodo, updateTodo } from "@/utils/todoPresenter";
+import styles from "./styles.module.scss";
 
 type TodoItemProps = {
   todo: Todo;
@@ -13,7 +14,7 @@ type TodoItemProps = {
 
 export function TodoItem({ todo, setTodos }: TodoItemProps) {
   const [isUpdating, setIsUpdating] = useState(false);
-  const [updateInput, handleUpdateInput] = useInput(todo.todo);
+  const [updateInput, handleUpdateInput, setUpdateInput] = useInput(todo.todo);
   const handleTodoDelete = () => {
     deleteTodo(todo, setTodos);
   };
@@ -26,10 +27,15 @@ export function TodoItem({ todo, setTodos }: TodoItemProps) {
     updateTodo(updatedTodo, setTodos);
     setIsUpdating(false);
   };
+  const handleCancle = () => {
+    setIsUpdating(false);
+    setUpdateInput(todo.todo);
+  };
 
   return (
-    <li>
+    <li className={styles.todoWrapper}>
       <input
+        className={styles.todoCheckbox}
         type="checkbox"
         checked={todo.isCompleted}
         onChange={handleTodoCheckUpdate}
@@ -37,9 +43,9 @@ export function TodoItem({ todo, setTodos }: TodoItemProps) {
       {isUpdating ? (
         <UpdatingInput
           updateInput={updateInput}
-          setIsUpdating={setIsUpdating}
           handleUpdateInput={handleUpdateInput}
           handleTodoInputUpdate={handleTodoInputUpdate}
+          handleCancle={handleCancle}
         />
       ) : (
         <NoUpdatingInput

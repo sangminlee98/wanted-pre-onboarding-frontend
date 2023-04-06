@@ -1,0 +1,39 @@
+.inputWrapper {
+  display: flex;
+  width: 100%;
+}
+
+.updateInput {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Pretendard";
+  font-size: 1.2rem;
+  color: #3d4a5c;
+  border: none;
+  border-bottom: 1px solid var(--darkgray-color);
+  outline: none;
+}
+
+.buttonWrapper {
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > button {
+    font-family: "Pretendard";
+    font-size: 1rem;
+    color: var(--text-color);
+    border: none;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  & > button:last-child {
+    color: #fa5151;
+  }
+}
