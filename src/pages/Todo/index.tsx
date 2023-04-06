@@ -3,7 +3,7 @@ import useInput from "@/hooks/useInput";
 import { getTodosAPI } from "@/services/todo";
 import { Todo } from "@/types/todo";
 import onKeydown from "@/utils/onKeydown";
-import TodoPresenter from "@/utils/todoPresenter";
+import { createTodo } from "@/utils/todoPresenter";
 import React from "react";
 import { useEffect, useState } from "react";
 import { Navigate, useOutletContext } from "react-router-dom";
@@ -12,7 +12,6 @@ export function TodoPage() {
   const authState = useOutletContext();
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, handleTitle, setTitle] = useInput("");
-  const presenter = new TodoPresenter(todos);
 
   // keydown 이벤트가 일어날 때 실행할 핸들러
   const keydownHandler = () => {
@@ -20,7 +19,7 @@ export function TodoPage() {
   };
 
   const handleTodoCreate = () => {
-    presenter.create(title, setTodos);
+    createTodo(title, setTodos);
     setTitle("");
   };
   useEffect(() => {
@@ -49,7 +48,7 @@ export function TodoPage() {
           추가
         </button>
       </div>
-      <TodoList todos={todos} presenter={presenter} setTodos={setTodos} />
+      <TodoList todos={todos} setTodos={setTodos} />
     </div>
   );
 }
