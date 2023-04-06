@@ -57,7 +57,7 @@
   margin-top: 0.5rem;
   margin-left: 0.5rem;
   min-height: 1.2rem;
-  color: #f24147;
+  color: #fa5151;
   font-family: "Pretendard";
   font-size: 0.8rem;
 }
@@ -72,8 +72,12 @@
   font-size: 1.5rem;
   color: white;
   cursor: pointer;
-  &:hover {
+  &:hover:enabled {
     opacity: 0.8;
+  }
+  &:disabled {
+    cursor: auto;
+    background-color: var(--darkgray-color);
   }
 }
 
