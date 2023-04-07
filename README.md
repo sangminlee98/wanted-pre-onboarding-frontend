@@ -10,6 +10,9 @@ Wanted에서 진행하는 프리온보딩 프론트엔드 인턴십 사전 과�
 
 https://wantedtodo.vercel.app/
 
+![데모영상](https://user-images.githubusercontent.com/83197138/230586236-a94174b9-bbca-4b6f-ae1f-10a3c1123f18.gif)
+
+
 ---
 
 ## 프로젝트 실행 방법
