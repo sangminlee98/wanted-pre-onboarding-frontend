@@ -4,13 +4,14 @@ import { getTodosAPI } from "@/services/todo";
 import { Todo } from "@/types/todo";
 import onKeydown from "@/utils/onKeydown";
 import { createTodo } from "@/utils/todoPresenter";
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import { Navigate, useOutletContext } from "react-router-dom";
 import styles from "./styles.module.scss";
 
 export function TodoPage() {
   const authState = useOutletContext();
+  const listRef = useRef<HTMLUListElement>(null);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [title, handleTitle, setTitle] = useInput("");
 
@@ -19,9 +20,17 @@ export function TodoPage() {
     handleTodoCreate();
   };
 
+  const scrollToBottom = () => {
+    listRef.current?.scrollTo({
+      top: listRef.current.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
   const handleTodoCreate = () => {
     if (title === "") return;
     createTodo(title, setTodos);
+    scrollToBottom();
     setTitle("");
   };
 
@@ -52,7 +61,7 @@ export function TodoPage() {
           추가
         </button>
       </div>
-      <TodoList todos={todos} setTodos={setTodos} />
+      <TodoList listRef={listRef} todos={todos} setTodos={setTodos} />
     </div>
   );
 }
