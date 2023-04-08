@@ -22,9 +22,9 @@ export function TodoItem({ todo, setTodos }: TodoItemProps) {
     const updatedTodo = { ...todo, isCompleted: e.target.checked };
     updateTodo(updatedTodo, setTodos);
   };
-  const handleTodoInputUpdate = () => {
+  const handleTodoInputUpdate = async () => {
     const updatedTodo = { ...todo, todo: updateInput };
-    updateTodo(updatedTodo, setTodos);
+    await updateTodo(updatedTodo, setTodos);
     setIsUpdating(false);
   };
   const handleCancle = () => {
